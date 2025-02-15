@@ -215,5 +215,5 @@ p:
         cout<<"\n\n "<<ch<<ch<<" PLEASE SELECT VALID NUMBER"<<ch<<ch;
     }
     getch();
-    goto p;
+    goto p; // To refresh the code
 }
