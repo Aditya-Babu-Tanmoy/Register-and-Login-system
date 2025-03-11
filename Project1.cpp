@@ -1,9 +1,10 @@
 
 #include<iostream>
 #include<conio.h>
+#include<string>
 using namespace std;
 
-int a=0;/// To count the registration
+int a=0;/// To count the number of action
 
 struct reg /// Make a structure to store multiple set of data
 {
@@ -17,8 +18,8 @@ struct reg /// Make a structure to store multiple set of data
 void RegisterAccount() /// Function of register account
 {
 
-    system("cls"); /// To refresh 
-    int ascii=178; /// Special Symbol
+    system("cls");
+    int ascii=178;
     char ch=ascii, d;
     cout<<"\n ";
     for(int i=1; i<=25; i++)
@@ -27,27 +28,28 @@ void RegisterAccount() /// Function of register account
     for(int i=1; i<=25; i++)
         cout<<ch;
     cout<<"\n\n\n "<<ch<<ch<<"Enter user ID "<<" ";
-    cin>>R[a].id; /// Input ID to store at structure[Line-8] 
+    cin>>R[a].id;
+    cin.ignore(); //clearing new line character
     cout<<"\n\n "<<ch<<ch<<"Enter user Name "<<" ";
-    cin>>R[a].name;/// Input name to store at structure[Line-8]
+    getline(cin, R[a].name);
     cout<<"\n\n "<<ch<<ch<<"Enter user Email "<<" ";
-    cin>>R[a].email;/// Input Email to store at structure[Line-8]
+    cin>>R[a].email;
     cout<<"\n\n "<<ch<<ch<<"Enter user Password "<<" ";
-    do 
+    do
     {
-        d=getch(); /// Input Password 
-        if(isdigit(d) || isalpha(d) || ispunct(d)) /// Password can be digits, symbols, letters
+        d=getch();
+        if(isdigit(d) || isalpha(d) || ispunct(d))
         {
-            R[a].password += d; ///store at structure[Line-8]
-            cout<<"*"; /// Use '*' symbol to hide password
+            R[a].password += d;
+            cout<<"*";
         }
     }
-    while(isdigit(d) || isalpha(d) || ispunct(d));/// check password exist or not
-    a++;///  Increase the 'a' variable [Note: Any user can't login without Registering his account]
-    cout<<"\n\n "<<ch<<ch<<" Account registered successfully "<<ch<<ch; /// See the successful message
+    while(isdigit(d) || isalpha(d) || ispunct(d));
+    a++;
+    cout<<"\n\n "<<ch<<ch<<" Account registered successfully "<<ch<<ch;
 }
 
-void Login() /// Function for login account
+void Login()
 {
     system("cls");
     int ascii=178;
@@ -57,12 +59,12 @@ void Login() /// Function for login account
     cout<<" LOGIN WINDOW ";
     for(int i=1; i<=25; i++)
         cout<<ch;
-    if(a==0) /// Checking any account exist or not
+    if(a==0)
         cout<<"\n\n "<<ch<<ch<<" No Record Found "<<ch<<ch;
     else
     {
-        bool found=false; 
-        string temail, tpassword; // Temporary string to check data with Structure's data
+        bool found=false;
+        string temail, tpassword;
         cout<<"\n\n\n "<<ch<<ch<<"Enter user Email "<<" ";
         cin>>temail;
         cout<<"\n\n\n "<<ch<<ch<<"Enter user Password "<<" ";
@@ -78,22 +80,22 @@ void Login() /// Function for login account
         while(isdigit(d) || isalpha(d) || ispunct(d));
         for(int k=0; k<a; k++)
         {
-            if(temail==R[k].email && tpassword==R[k].password) // Check the password matching or not
+            if(temail==R[k].email && tpassword==R[k].password)
             {
                 cout<<"\n\n\n "<<ch<<ch<<" User ID "<<R[k].id;
                 cout<<"\n\n "<<ch<<ch<<" User Name "<<R[k].name;
                 cout<<"\n\n "<<ch<<ch<<" User Email "<<R[k].email;
                 cout<<"\n\n "<<ch<<ch<<" User Password "<<R[k].password;
-                found=true; // If all data matched than make the variable true
+                found=true;
                 break;
             }
         }
-        if(!found) // If not match than show the Incorrect message
+        if(!found)
             cout<<"\n\n "<<ch<<ch<<" User data Incorrect "<<ch<<ch;
     }
 }
 
-void ForgotEmail()/// Function of Forgot Email [Note: We check the Password to Forgot Email]
+void ForgotEmail()
 {
     system("cls");
     int ascii=178;
@@ -112,7 +114,7 @@ void ForgotEmail()/// Function of Forgot Email [Note: We check the Password to F
         cout<<"\n\n\n "<<ch<<ch<<"Enter user Password "<<" ";
         do
         {
-            d=getch(); // Input the password 
+            d=getch();
             if(isdigit(d) || isalpha(d) || ispunct(d))
             {
                 tpassword += d;
@@ -122,7 +124,7 @@ void ForgotEmail()/// Function of Forgot Email [Note: We check the Password to F
         while(isdigit(d) || isalpha(d) || ispunct(d));
         for(int k=0; k<a; k++)
         {
-            if(tpassword==R[k].password) /// Check the password
+            if(tpassword==R[k].password)
             {
                 cout<<"\n\n\n "<<ch<<ch<<" User ID "<<R[k].id;
                 cout<<"\n\n "<<ch<<ch<<" User Name "<<R[k].name;
@@ -137,7 +139,7 @@ void ForgotEmail()/// Function of Forgot Email [Note: We check the Password to F
     }
 }
 
-void ForgotPassword() /// Function of Forgot password [Note: We check the Email to Forgot Password]
+void ForgotPassword()
 {
     system("cls");
     int ascii=178;
@@ -158,7 +160,7 @@ void ForgotPassword() /// Function of Forgot password [Note: We check the Email 
         while(isdigit(d) || isalpha(d) || ispunct(d));
         for(int k=0; k<a; k++)
         {
-            if(temail==R[k].email) // Check email
+            if(temail==R[k].email)
             {
                 cout<<"\n\n\n "<<ch<<ch<<" User ID "<<R[k].id;
                 cout<<"\n\n "<<ch<<ch<<" User Name "<<R[k].name;
@@ -172,6 +174,31 @@ void ForgotPassword() /// Function of Forgot password [Note: We check the Email 
             cout<<"\n\n "<<ch<<ch<<" User data Incorrect "<<ch<<ch;
     }
 }
+void OpenAll() /// For developers Only
+{
+    system("cls");
+    int ascii=178;
+    char ch=ascii,d;
+    for(int i=1; i<=25; i++)
+        cout<<ch;
+    cout<<" DEVELOPER WINDOW ";
+    for(int i=1; i<=25; i++)
+        cout<<ch;
+    if(a==0)
+        cout<<"\n\n "<<ch<<ch<<" No Record Found "<<ch<<ch;
+    else
+    {
+        for(int k=0; k<a; k++)
+        {
+            cout<<"\n\n\n "<<ch<<ch<<" User ID "<<R[k].id;
+            cout<<"\n\n "<<ch<<ch<<" User Name "<<R[k].name;
+            cout<<"\n\n "<<ch<<ch<<" User Email "<<R[k].email;
+            cout<<"\n\n "<<ch<<ch<<" User Password "<<R[k].password;
+            cout<<"\n\n";
+        }
+    }
+}
+
 int main()
 {
 p:
@@ -194,8 +221,8 @@ p:
     for(int i=1; i<=66; i++)
         cout<<ch;
     cout<<"\n\n\n Enter your choice "<<" ";
-    cin>>choice; /// Input the choice
-    switch(choice) /// Used switch case to Handle the Choice
+    cin>>choice;
+    switch(choice)
     {
     case 1:
         RegisterAccount();
@@ -211,9 +238,14 @@ p:
         break;
     case 5:
         exit(0);
+        break;
+    case -1:
+        OpenAll();
+        break;
     default:
         cout<<"\n\n "<<ch<<ch<<" PLEASE SELECT VALID NUMBER"<<ch<<ch;
     }
     getch();
-    goto p; // To refresh the code
+    goto p;
 }
+
